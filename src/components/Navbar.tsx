@@ -63,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenOrderModal }) => {
                   }
                 }}
                 alt="Casmine Logo"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 mobile-crisp-img"
                 referrerPolicy="no-referrer"
               />
             </div>

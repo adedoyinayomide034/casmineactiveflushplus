@@ -1,5 +1,6 @@
 import React from 'react';
-import { Phone, MessageCircle, ArrowRight, ShieldCheck, Check, Sparkles } from 'lucide-react';
+import { motion } from 'motion/react';
+import { Phone, MessageCircle, Check } from 'lucide-react';
 import { BRAND_INFO, PHONE_CONTACTS, ASSETS } from '../data/productData';
 
 interface HeroProps {
@@ -20,17 +21,27 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
   return (
     <section
       id="home"
-      className="relative bg-[#F7F8F2] text-[#1A3A32] pt-8 pb-16 md:pt-14 md:pb-24 border-b border-[#1A3A32]/10 overflow-hidden"
+      className="relative bg-[#F7F8F2] text-[#1A3A32] pt-6 pb-14 sm:pt-10 sm:pb-20 md:pt-14 md:pb-24 border-b border-[#1A3A32]/10 overflow-hidden"
     >
       {/* Editorial Decorative Watermark/Dot pattern */}
       <div className="absolute top-0 right-0 w-96 h-96 opacity-15 pointer-events-none editorial-pattern" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Editorial Section */}
-          <div className="lg:col-span-6 space-y-6">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          {/* Left Editorial Section with Motion Stagger */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="lg:col-span-6 space-y-5 sm:space-y-6"
+          >
             {/* Pill Badges */}
-            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <motion.div
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
+              className="flex flex-wrap items-center gap-1.5 sm:gap-2"
+            >
               <span
                 id="hero-badge-natural"
                 className="bg-[#DDE5B6] text-[#1A3A32] px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-xs"
@@ -49,10 +60,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
               >
                 Plant Based
               </span>
-            </div>
+            </motion.div>
 
             {/* Editorial Title with Large Fitted Product Image Beside */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6 lg:gap-8 my-2">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 sm:gap-6 lg:gap-8 my-1 sm:my-2">
               <div className="space-y-1.5 flex-1">
                 <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-[#4B6F44] block">
                   Natural Detox &amp; Wellness Drink
@@ -69,10 +80,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                 </h1>
               </div>
 
-              {/* High-Impact Product Bottle Showcase */}
-              <div className="flex-shrink-0 flex items-center justify-center self-center sm:self-center">
+              {/* High-Impact Product Bottle Showcase with Motion Floating Effect */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="flex-shrink-0 flex items-center justify-center self-center sm:self-center"
+              >
                 <div className="relative group w-44 h-52 xs:w-48 xs:h-56 sm:w-56 sm:h-64 md:w-64 md:h-76 lg:w-72 lg:h-84 rounded-3xl overflow-hidden border-2 border-[#1A3A32]/20 shadow-lg bg-gradient-to-b from-white via-[#FEFAE0]/40 to-[#F7F8F2] p-2.5 sm:p-3 hover:border-[#2D6A4F] hover:shadow-xl transition-all duration-300">
-                  <div className="w-full h-full rounded-2xl overflow-hidden bg-white/70 flex items-center justify-center relative p-2">
+                  <div className="w-full h-full rounded-2xl overflow-hidden bg-white/80 flex items-center justify-center relative p-2 shadow-inner">
                     <img
                       id="hero-title-bottle-img"
                       src={ASSETS.productBottle}
@@ -83,8 +99,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                         }
                       }}
                       alt="Casmine Active Flush Plus Bottle"
-                      className="w-full h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+                      className="w-full h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300 mobile-crisp-img"
                       referrerPolicy="no-referrer"
+                      loading="eager"
                     />
                   </div>
                   <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#2D6A4F] text-white px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-sm">
@@ -99,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Supporting Text */}
@@ -124,32 +141,38 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
 
             {/* Action Buttons: Responsive Full-Width/Grid on Mobile, Flex on Desktop */}
             <div className="grid grid-cols-1 xs:grid-cols-3 sm:flex sm:flex-wrap gap-2.5 sm:gap-3 pt-2">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
                 id="hero-cta-whatsapp-us"
                 href={primaryWhatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="min-h-[44px] bg-[#2D6A4F] hover:bg-[#1f4a37] text-white flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md active:scale-95 transition-all cursor-pointer text-center"
+                className="min-h-[44px] bg-[#2D6A4F] hover:bg-[#1f4a37] text-white flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all cursor-pointer text-center"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-200" />
                 <span>WhatsApp Us</span>
-              </a>
+              </motion.a>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
                 id="hero-cta-contact-us"
                 onClick={scrollToContact}
-                className="min-h-[44px] border border-[#1A3A32] text-[#1A3A32] hover:bg-[#1A3A32] hover:text-white active:scale-95 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer text-center"
+                className="min-h-[44px] border border-[#1A3A32] text-[#1A3A32] hover:bg-[#1A3A32] hover:text-white px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer text-center"
               >
                 Contact Us
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.96 }}
                 id="hero-cta-order-now"
                 onClick={onOpenOrderModal}
-                className="min-h-[44px] bg-[#FEFAE0] text-[#1A3A32] border border-[#BC6C25]/20 hover:bg-[#faeed0] active:scale-95 px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer text-center"
+                className="min-h-[44px] bg-[#FEFAE0] text-[#1A3A32] border border-[#BC6C25]/20 hover:bg-[#faeed0] px-5 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer text-center"
               >
                 Quick Order
-              </button>
+              </motion.button>
             </div>
 
             {/* Direct Phone Call Indicator */}
@@ -159,23 +182,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                 <span>Direct Lines:</span>
               </div>
               <div className="flex flex-wrap gap-2 font-mono text-xs">
-                {PHONE_CONTACTS.map((phone, idx) => (
+                {PHONE_CONTACTS.map((phone) => (
                   <a
                     key={phone.raw}
                     href={`tel:${phone.raw}`}
-                    className="hover:text-[#4B6F44] underline font-medium bg-white/60 px-2 py-0.5 rounded-md border border-[#1A3A32]/10"
+                    className="hover:text-[#4B6F44] underline font-medium bg-white/60 px-2 py-0.5 rounded-md border border-[#1A3A32]/10 active:scale-95 transition-transform"
                   >
                     {phone.display}
                   </a>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Section: Editorial Bento Product Showcase */}
-          <div className="lg:col-span-6 space-y-4">
+          {/* Right Section: Editorial Bento Product Showcase with Reveal Motion */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25, ease: 'easeOut' }}
+            className="lg:col-span-6 space-y-4"
+          >
             {/* Top Product Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-xs border border-[#1A3A32]/10 grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
+            <div className="bg-white rounded-3xl p-5 sm:p-7 shadow-xs border border-[#1A3A32]/10 grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center">
               <div className="sm:col-span-6 space-y-3">
                 <div className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#4B6F44]">
                   <div className="w-2 h-2 bg-[#4B6F44] rounded-full"></div>
@@ -204,8 +232,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                 </ul>
               </div>
 
-              {/* Product Visual */}
-              <div className="sm:col-span-6 relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#FEFAE0]/40 to-[#F7F8F2] border border-[#1A3A32]/10 aspect-square flex items-center justify-center p-3 sm:p-4 group">
+              {/* Product Visual with High-Clarity Wrapper */}
+              <div className="sm:col-span-6 relative rounded-2xl overflow-hidden bg-gradient-to-b from-[#FEFAE0]/40 to-[#F7F8F2] border border-[#1A3A32]/10 aspect-square flex items-center justify-center p-3 sm:p-4 group shadow-xs">
                 <img
                   id="hero-product-image"
                   src={ASSETS.productBottle}
@@ -216,8 +244,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                     }
                   }}
                   alt="Casmine Active Flush Plus 200ml Bottle"
-                  className="w-full h-full object-contain drop-shadow-md rounded-xl group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain drop-shadow-md rounded-xl group-hover:scale-105 transition-transform duration-500 mobile-crisp-img"
                   referrerPolicy="no-referrer"
+                  loading="eager"
                 />
                 <div className="absolute top-3 left-3 bg-[#1A3A32] text-white px-2.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider">
                   200ml
@@ -228,7 +257,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
             {/* Bottom 2-Card Editorial Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Daily Protocol Card */}
-              <div className="bg-[#2D6A4F] text-white rounded-3xl p-6 shadow-xs flex flex-col justify-between">
+              <div className="bg-[#2D6A4F] text-white rounded-3xl p-5 sm:p-6 shadow-xs flex flex-col justify-between">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-widest mb-3 text-emerald-100">
                     Daily Usage Protocol
@@ -254,7 +283,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
               </div>
 
               {/* Cautions Notice Card */}
-              <div className="bg-[#FEFAE0] border border-[#BC6C25]/20 rounded-3xl p-6 flex flex-col justify-between text-[#1A3A32]">
+              <div className="bg-[#FEFAE0] border border-[#BC6C25]/20 rounded-3xl p-5 sm:p-6 flex flex-col justify-between text-[#1A3A32]">
                 <div>
                   <h3 className="text-xs font-bold uppercase text-[#BC6C25] mb-2 flex items-center gap-1.5 font-sans tracking-widest">
                     <span className="w-2 h-2 rounded-full bg-[#BC6C25]"></span>
@@ -280,9 +309,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenOrderModal }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Leaf, Sparkles, ShieldCheck, Shield, HeartPulse, Check, Droplet, Sun, Moon } from 'lucide-react';
 import { BRAND_INFO, PRODUCT_QUALITIES, ASSETS } from '../data/productData';
 
@@ -20,10 +21,16 @@ export const AboutProduct: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-16 sm:py-24 bg-[#F7F8F2] text-[#1A3A32] border-b border-[#1A3A32]/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-14 sm:py-20 md:py-24 bg-[#F7F8F2] text-[#1A3A32] border-b border-[#1A3A32]/10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Editorial Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 max-w-5xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 max-w-5xl mb-10 sm:mb-16"
+        >
           <div className="max-w-3xl flex-1">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="bg-[#DDE5B6] text-[#1A3A32] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
@@ -49,7 +56,10 @@ export const AboutProduct: React.FC = () => {
             </p>
           </div>
 
-          <div className="w-28 h-32 xs:w-36 xs:h-40 sm:w-40 sm:h-44 md:w-48 md:h-52 rounded-3xl overflow-hidden border-2 border-[#1A3A32]/15 shadow-md bg-white p-2 flex-shrink-0 self-center sm:self-center">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="w-28 h-32 xs:w-36 xs:h-40 sm:w-40 sm:h-44 md:w-48 md:h-52 rounded-3xl overflow-hidden border-2 border-[#1A3A32]/15 shadow-md bg-white p-2 flex-shrink-0 self-center sm:self-center"
+          >
             <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FEFAE0]/40 to-white flex items-center justify-center p-2">
               <img
                 src={ASSETS.productBottle}
@@ -60,16 +70,23 @@ export const AboutProduct: React.FC = () => {
                   }
                 }}
                 alt="Casmine Active Flush Plus Product"
-                className="w-full h-full object-contain drop-shadow-sm"
+                className="w-full h-full object-contain drop-shadow-sm mobile-crisp-img"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* 2-Column Editorial Card Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12 sm:mb-16">
-          <div className="lg:col-span-6 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6 space-y-6"
+          >
             <div className="bg-white rounded-3xl p-5 sm:p-7 md:p-8 shadow-xs border border-[#1A3A32]/10 space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-[#1A3A32]/10">
                 <h3 className="text-xl font-serif font-bold text-[#1A3A32]">
@@ -156,9 +173,15 @@ export const AboutProduct: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="lg:col-span-6">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-6"
+          >
             <div className="relative rounded-3xl overflow-hidden shadow-sm border border-[#1A3A32]/10 bg-white">
               <img
                 src={ASSETS.naturalBotanicals}
@@ -169,8 +192,9 @@ export const AboutProduct: React.FC = () => {
                   }
                 }}
                 alt="Natural botanical ingredients for Casmine Active Flush Plus"
-                className="w-full h-64 xs:h-72 sm:h-80 md:h-96 object-cover"
+                className="w-full h-64 xs:h-72 sm:h-80 md:h-96 object-cover mobile-crisp-img"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A3A32]/90 via-[#1A3A32]/30 to-transparent flex flex-col justify-end p-5 sm:p-6 md:p-8 text-white">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#DDE5B6] mb-1">
@@ -184,7 +208,7 @@ export const AboutProduct: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* 5 Core Product Qualities Cards */}
@@ -199,11 +223,16 @@ export const AboutProduct: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
-            {PRODUCT_QUALITIES.map((quality) => (
-              <div
+            {PRODUCT_QUALITIES.map((quality, index) => (
+              <motion.div
                 key={quality.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 id={`quality-card-${quality.id}`}
-                className="bg-white rounded-2xl p-5 border border-[#1A3A32]/10 shadow-xs hover:border-[#2D6A4F] transition-all flex flex-col justify-between group"
+                className="bg-white rounded-2xl p-5 border border-[#1A3A32]/10 shadow-xs hover:border-[#2D6A4F] hover:shadow-sm transition-all flex flex-col justify-between group cursor-default"
               >
                 <div>
                   <div className="w-10 h-10 rounded-xl bg-[#F7F8F2] group-hover:bg-[#DDE5B6] flex items-center justify-center mb-3 transition-colors">
@@ -216,7 +245,7 @@ export const AboutProduct: React.FC = () => {
                     {quality.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -224,3 +253,4 @@ export const AboutProduct: React.FC = () => {
     </section>
   );
 };
+

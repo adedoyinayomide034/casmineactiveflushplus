@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import {
   Phone,
   MessageCircle,
@@ -125,10 +126,16 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 bg-[#F7F8F2] text-[#1A3A32]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-14 sm:py-20 md:py-24 bg-[#F7F8F2] text-[#1A3A32] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Editorial Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-10 sm:mb-16"
+        >
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="bg-[#DDE5B6] text-[#1A3A32] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
               Inquiries &amp; Orders
@@ -148,12 +155,18 @@ export const ContactSection: React.FC = () => {
           <p className="text-base sm:text-lg text-[#1A3A32]/80 font-serif italic">
             "{BRAND_INFO.ctaMotto}"
           </p>
-        </div>
+        </motion.div>
 
         {/* 2-Column Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Direct Call & WhatsApp Contact Info */}
-          <div className="lg:col-span-5 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-6"
+          >
             <div className="bg-[#1A3A32] text-white rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#DDE5B6] block mb-1">
@@ -239,10 +252,16 @@ export const ContactSection: React.FC = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Contact & Order Message Form */}
-          <div className="lg:col-span-7">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7"
+          >
             <div className="bg-white rounded-3xl p-5 sm:p-8 lg:p-10 shadow-xs border border-[#1A3A32]/10 text-[#1A3A32]">
               <div className="mb-6 pb-4 border-b border-[#1A3A32]/10">
                 <h3 className="text-xl font-serif font-bold text-[#1A3A32]">
@@ -507,9 +526,10 @@ export const ContactSection: React.FC = () => {
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

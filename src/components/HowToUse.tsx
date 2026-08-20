@@ -1,13 +1,20 @@
 import React from 'react';
-import { Sun, Moon, RotateCcw, Unlock, ThermometerSnowflake, Droplet, Clock, CheckCircle2 } from 'lucide-react';
-import { USAGE_STEPS, USAGE_CARE_INSTRUCTIONS, BRAND_INFO, ASSETS } from '../data/productData';
+import { motion } from 'motion/react';
+import { Sun, Moon, RotateCcw, Unlock, ThermometerSnowflake, CheckCircle2 } from 'lucide-react';
+import { USAGE_STEPS, BRAND_INFO, ASSETS } from '../data/productData';
 
 export const HowToUse: React.FC = () => {
   return (
-    <section id="how-to-use" className="py-16 sm:py-24 bg-[#F7F8F2] text-[#1A3A32] border-b border-[#1A3A32]/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="how-to-use" className="py-14 sm:py-20 md:py-24 bg-[#F7F8F2] text-[#1A3A32] border-b border-[#1A3A32]/10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 max-w-5xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 max-w-5xl mb-10 sm:mb-16"
+        >
           <div className="max-w-3xl flex-1">
             <div className="inline-flex items-center gap-2 mb-3">
               <span className="bg-[#DDE5B6] text-[#1A3A32] px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
@@ -30,7 +37,10 @@ export const HowToUse: React.FC = () => {
             </p>
           </div>
 
-          <div className="w-28 h-32 xs:w-36 xs:h-40 sm:w-40 sm:h-44 md:w-48 md:h-52 rounded-3xl overflow-hidden border-2 border-[#1A3A32]/15 shadow-md bg-white p-2 flex-shrink-0 self-center sm:self-center">
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            className="w-28 h-32 xs:w-36 xs:h-40 sm:w-40 sm:h-44 md:w-48 md:h-52 rounded-3xl overflow-hidden border-2 border-[#1A3A32]/15 shadow-md bg-white p-2 flex-shrink-0 self-center sm:self-center"
+          >
             <div className="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-b from-[#FEFAE0]/40 to-white flex items-center justify-center p-2">
               <img
                 src={ASSETS.productBottle}
@@ -41,16 +51,23 @@ export const HowToUse: React.FC = () => {
                   }
                 }}
                 alt="Casmine Active Flush Plus Bottle"
-                className="w-full h-full object-contain drop-shadow-sm"
+                className="w-full h-full object-contain drop-shadow-sm mobile-crisp-img"
                 referrerPolicy="no-referrer"
+                loading="lazy"
               />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Product Bottle Visual & Size Card */}
-          <div className="lg:col-span-5 flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 flex flex-col items-center"
+          >
             <div className="relative w-full max-w-sm bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-[#1A3A32]/10 text-center">
               {/* Size Badge */}
               <div className="absolute top-4 right-4 bg-[#1A3A32] text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
@@ -67,8 +84,9 @@ export const HowToUse: React.FC = () => {
                     }
                   }}
                   alt="Casmine Active Flush Plus 200ml Bottle"
-                  className="w-full h-full object-contain drop-shadow-md rounded-xl"
+                  className="w-full h-full object-contain drop-shadow-md rounded-xl mobile-crisp-img"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4 bg-[#1A3A32]/90 backdrop-blur-xs rounded-xl py-1.5 sm:py-2 text-white">
                   <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#DDE5B6]">
@@ -103,15 +121,26 @@ export const HowToUse: React.FC = () => {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Step-by-Step Instructions and Important Care */}
-          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-7 space-y-5 sm:space-y-6"
+          >
             {/* Step 1 & Step 2 Primary Cards */}
             <div className="space-y-3.5 sm:space-y-4">
-              {USAGE_STEPS.map((step) => (
-                <div
+              {USAGE_STEPS.map((step, idx) => (
+                <motion.div
                   key={step.stepNumber}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.15 }}
+                  whileHover={{ y: -2, transition: { duration: 0.2 } }}
                   id={`usage-step-${step.stepNumber}`}
                   className="bg-white rounded-3xl p-5 sm:p-6 border border-[#1A3A32]/10 hover:border-[#2D6A4F] shadow-xs transition-all flex flex-col sm:flex-row items-start gap-3.5 sm:gap-4"
                 >
@@ -137,7 +166,7 @@ export const HowToUse: React.FC = () => {
                       {step.description}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -180,9 +209,10 @@ export const HowToUse: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

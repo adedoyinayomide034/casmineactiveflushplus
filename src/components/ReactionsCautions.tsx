@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { AlertTriangle, AlertCircle, ShieldAlert, CheckCircle } from 'lucide-react';
 import { REACTIONS_LIST, CAUTIONS_LIST } from '../data/productData';
 
@@ -6,11 +7,17 @@ export const ReactionsCautions: React.FC = () => {
   return (
     <section
       id="precautions"
-      className="py-16 sm:py-24 bg-white text-[#1A3A32] border-b border-[#1A3A32]/10 relative"
+      className="py-14 sm:py-20 md:py-24 bg-white text-[#1A3A32] border-b border-[#1A3A32]/10 relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8">
         {/* Editorial Section Header */}
-        <div className="max-w-3xl mb-12 sm:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-3xl mb-10 sm:mb-16"
+        >
           <div className="inline-flex items-center gap-2 mb-3">
             <span className="bg-[#FEFAE0] text-[#BC6C25] border border-[#BC6C25]/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
               Safety &amp; Advisory
@@ -30,12 +37,17 @@ export const ReactionsCautions: React.FC = () => {
           <p className="text-base sm:text-lg text-[#1A3A32]/80 font-serif italic">
             Please review the expected body reactions and medical cautions stated explicitly on the official Casmine product flyer before consumption.
           </p>
-        </div>
+        </motion.div>
 
         {/* 2 Editorial High-Visibility Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
           {/* 1. Reactions (May Occur) */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            whileHover={{ y: -3, transition: { duration: 0.2 } }}
             id="reactions-card"
             className="bg-[#F7F8F2] rounded-3xl p-5 sm:p-7 md:p-8 border border-[#1A3A32]/10 shadow-xs flex flex-col justify-between"
           >
@@ -78,10 +90,15 @@ export const ReactionsCautions: React.FC = () => {
                 These sensations indicate active bodily detoxification and digestive flushing.
               </span>
             </div>
-          </div>
+          </motion.div>
 
           {/* 2. Cautions (Strict Warnings) */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.15 }}
+            whileHover={{ y: -3, transition: { duration: 0.2 } }}
             id="cautions-card"
             className="bg-[#FEFAE0] rounded-3xl p-5 sm:p-7 md:p-8 border border-[#BC6C25]/20 shadow-xs flex flex-col justify-between text-[#1A3A32]"
           >
@@ -124,9 +141,10 @@ export const ReactionsCautions: React.FC = () => {
                 Please strictly observe all product cautions before purchase and consumption.
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 };
+

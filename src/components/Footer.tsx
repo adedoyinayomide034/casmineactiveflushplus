@@ -37,8 +37,9 @@ export const Footer: React.FC = () => {
                     }
                   }}
                   alt="Casmine Logo"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover mobile-crisp-img"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
               </div>
               <div>
