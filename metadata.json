@@ -1,0 +1,6 @@
+{
+  "name": "Casmine Active Flush Plus",
+  "description": "Official business website for Casmine Active Flush Plus natural detox and wellness drink.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
